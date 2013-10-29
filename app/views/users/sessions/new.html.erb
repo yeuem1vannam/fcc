@@ -1,0 +1,25 @@
+<div id="sessions-new">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h1>FCC</h1>
+    <div class="title">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, class: "input_fields" %>
+    </div>
+    <div class="title">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "input_fields" %>
+    </div>
+<% if devise_mapping.rememberable? -%>
+    <div class="title">
+      <%= f.check_box :remember_me, class: "check-box" %><%= f.label :remember_me %>
+    </div>
+<% end -%>
+    <div class="title">
+      <%= f.submit "Đăng nhập", class: %w(btn btn-primary) %>
+    </div>
+    <div class="title link_href">
+      <%= render "users/shared/links" %>
+    </div>
+  <% end %>
+</div>
+<%= stylesheet_link_tag "user/login" %>
