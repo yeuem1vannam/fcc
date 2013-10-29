@@ -7,6 +7,12 @@ gem 'rails', '4.0.0'
 gem 'mysql2'
 gem "devise"
 gem "thin"
+gem "faye"
+gem "faye-websocket"
+gem "pry-byebug"
+gem "redis"
+gem "rails_config"
+gem "better_errors"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
