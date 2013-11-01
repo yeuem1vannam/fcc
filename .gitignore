@@ -8,6 +8,9 @@
 /.bundle
 .project
 config/database.yml
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -16,3 +19,5 @@ config/database.yml
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+db/schema.rb
+Gemfile.lock
