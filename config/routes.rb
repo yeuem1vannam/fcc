@@ -1,6 +1,24 @@
 Fcc::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
+
+  resources :contests, only: [:index, :show] do
+    resources :problems, only: [:show] do
+      resources :test_cases, only: [:show]
+      resources :submissions, only: [:show, :new, :create]
+    end
+  end
+
+  ## TODO @linhnt add to admin routes
+  # namespace :admin do
+  #   resources :contests, only: [:index, :show, :new, :update, :create] do
+  #     resources :problems, only: [:index, :show, :new, :update, :create] do
+  #       resources :test_cases, only: [:index, :show, :new, :update, :create]
+  #       resources :submissions, only: [:index, :show]
+  #     end
+  #   end
+  # end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

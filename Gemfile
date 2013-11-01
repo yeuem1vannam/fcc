@@ -58,3 +58,4 @@ end
 
 gem 'ckeditor'
 gem 'paperclip'
+gem 'kaminari'
