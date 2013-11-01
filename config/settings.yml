@@ -1,0 +1,9 @@
+pagination:
+  contests:
+    index: 10
+    show:
+      problems: 10
+  problems:
+    show:
+      submissions: 10
+      test_cases: 10

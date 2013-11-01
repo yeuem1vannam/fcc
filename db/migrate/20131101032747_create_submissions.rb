@@ -6,7 +6,7 @@ class CreateSubmissions < ActiveRecord::Migration
       t.string :state
       t.string :result_status
       t.integer :last_passed_test_case
-      t.text :content
+      t.text :output
 
       t.timestamps
     end
