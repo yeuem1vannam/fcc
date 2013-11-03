@@ -1,0 +1,34 @@
+<h1>My submissions</h1>
+
+<table border='1'>
+  <th>Problem</th>
+  <th>Language</th>
+  <th>State</th>
+  <th>Result status</th>
+  <th>Last passed test case</th>
+  <tbody>
+    <% submissions.each do |submission| %>
+      <tr>
+        <td>
+          <%= link_to contest_problem_path(submission.problem.contest, submission.problem) do %>
+            <h3><%= submission.problem.name %></h3>
+          <% end %>
+        </td>
+        <td>
+          <%= Settings.accepted_languages[submission.language] %>
+        </td>
+        <td>
+          <%= submission.state %>
+        </td>
+        <td>
+          <%= submission.result_status %>
+        </td>
+        <td>
+          <%= submission.last_passed_test_case %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate submissions %>

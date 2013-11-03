@@ -1,6 +1,6 @@
 class ContestsController < BaseController
   def index
-    @contests = Contest.order("created_at desc").page(params[:page]).per(Settings.pagination.contests.index)
+    @contests = Contest.page(params[:page]).per(Settings.pagination.contests.index)
   end
 
   def show
