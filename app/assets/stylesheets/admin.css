@@ -1,0 +1,7 @@
+/*
+ *= require bootstrap_and_overrides
+ *= require jquery.ui.all
+ *= require_tree ./shared
+ *= require_tree ./admin
+ *= require_self
+ */

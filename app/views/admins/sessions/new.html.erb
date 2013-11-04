@@ -1,6 +1,6 @@
 <div id="sessions-new">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <h1>FCC</h1>
+    <h1>Fcc Admin</h1>
     <div class="title">
       <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, class: "input_fields" %>
@@ -18,7 +18,7 @@
       <%= f.submit "Đăng nhập", class: %w(btn btn-primary) %>
     </div>
     <div class="title link_href">
-      <%= render "users/shared/links" %>
+      <%= render "admins/shared/links" %>
     </div>
   <% end %>
 </div>

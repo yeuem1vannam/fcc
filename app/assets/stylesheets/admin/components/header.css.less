@@ -1,0 +1,20 @@
+@import "shared/mixins.css.less";
+#components-header {
+  .clearfix();
+  ul#user-actions {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-top: 8px;
+      font-size: 16px;
+      &.separator {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+      .name {
+        font-weight: bold;
+      }
+    }
+  }
+}

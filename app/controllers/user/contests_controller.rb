@@ -1,4 +1,4 @@
-class ContestsController < BaseController
+class User::ContestsController < User::BaseUserController
   def index
     @contests = Contest.page(params[:page]).per(Settings.pagination.contests.index)
   end

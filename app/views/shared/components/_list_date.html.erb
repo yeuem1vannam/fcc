@@ -1,0 +1,4 @@
+<% number_of_dates.times do |i| %>
+  <%= link_to i.days.ago.strftime("%Y年%m月%d日"),
+    admin_root_path(date: i.days.ago.strftime("%Y-%m-%d")) %><br/>
+<% end %>

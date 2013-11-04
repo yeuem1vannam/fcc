@@ -1,0 +1,24 @@
+<% content_for :stylesheets do -%>
+<%= stylesheet_link_tag :admin, media: "all" %>
+<% end -%>
+<% content_for :content do -%>
+  <%= render partial: "admin/components/header" %>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <%= render partial: "admin/components/side_menu" %>
+      </div>
+      <div class="span9">
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render partial: "admin/components/footer" %>
+  </div>
+<% end -%>
+<% content_for :javascripts do -%>
+<%= javascript_include_tag(:admin) %>
+<% end -%>
+
+<%= render partial: "layouts/base_layout" %>

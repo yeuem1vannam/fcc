@@ -1,13 +1,6 @@
 Fcc::Application.routes.draw do
   mount Resque::Server, at: '/resque'
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users
-
-  resources :contests, only: [:index, :show] do
-    resources :problems, only: [:show] do
-    end
-  end
-  resources :submissions, only: [:index, :create]
 
   ## TODO @linhnt add to admin routes
   # namespace :admin do

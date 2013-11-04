@@ -1,4 +1,4 @@
-class ProblemsController < BaseController
+class User::ProblemsController < User::BaseUserController
   before_filter :load_contest, only: [:show]
   before_filter :load_problem, only: [:show]
   before_filter :load_submissions, only: [:show]

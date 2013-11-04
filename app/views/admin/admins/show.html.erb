@@ -1,0 +1,28 @@
+<section id="admins-show">
+  <h1 class="page-title"><%= t ".title", name: @admin.name %></h1>
+  <div class="actions">
+    <%= link_to t(".edit"), edit_admin_admin_path(@admin), class: :btn %>
+    <%= link_to t(".back"), admin_admins_path, class: :btn %>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= t ".requirement" %></th>
+        <th><%= t ".field" %></th>
+        <th><%= t ".value" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= requirement_label @admin, :name %></td>
+        <td><%= Admin.h :name %></td>
+        <td><%= @admin.name %></td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, :email %></td>
+        <td><%= Admin.h :email %></td>
+        <td><%= @admin.email %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

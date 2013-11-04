@@ -1,0 +1,26 @@
+<div class="accordion" id="side_menu" >
+<% side_menues.each do |menu|%>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+<% if menu[:collapses] %>
+  <% if menu[:name_head] %>
+    <%= link_to t(".#{menu[:group]}.header", name: menu[:name_head].call), "#", class: "accordion-toggle", "data-toggle" => "collapse", "data-target" => "#collapse-#{menu[:group]}" %>
+  <% else %>
+    <%= link_to t(".#{menu[:group]}.header"), "#", class: "accordion-toggle", "data-toggle" => "collapse", "data-target" => "#collapse-#{menu[:group]}" %>
+  <% end %>
+<% else %>
+  <%= link_to t(".#{menu[:group]}.header"), menu[:heading].call, class: "accordion-toggle" %>
+<% end %>
+    </div>
+<% if menu[:collapses] %>
+    <div id="collapse-<%=menu[:group]%>" class="collapse<%= " in" if side_menu_include? menu[:collapses] %>">
+<% menu[:collapses].each do |label, url_proc| %>
+      <div class="accordion-inner<%= " active" if side_menu_include?({_: url_proc}) %>">
+        <%= link_to t(".#{menu[:group]}.#{label}"), url_proc.call %>
+      </div>
+<% end %>
+    </div>
+<% end %>
+  </div>
+<% end %>
+</div>

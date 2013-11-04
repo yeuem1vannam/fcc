@@ -1,4 +1,4 @@
-class SubmissionsController < BaseController
+class User::SubmissionsController < User::BaseUserController
   before_filter :load_problem, only: [:create]
   before_filter :check_opening_contest, only: [:create]
 

@@ -1,0 +1,11 @@
+<% content_for :stylesheets do -%>
+<%= stylesheet_link_tag :admin, media: "all" %>
+<% end -%>
+<% content_for :content do -%>
+  <%= yield %>
+<% end -%>
+<% content_for :javascripts do -%>
+<%= javascript_include_tag(:admin) %>
+<% end -%>
+
+<%= render partial: "layouts/base_layout" %>

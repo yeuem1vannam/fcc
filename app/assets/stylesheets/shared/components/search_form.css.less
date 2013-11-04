@@ -1,0 +1,21 @@
+form.search-form {
+  border-top: 1px solid #ccc;
+  display: none;
+  &.show {
+    display: block;
+  }
+  .search-row {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    &:nth-child(2n) {
+      background-color: #f6f6f6;
+    }
+    .search-col {
+      padding: 0 0 0 10px;
+    }
+    input[type="submit"] {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

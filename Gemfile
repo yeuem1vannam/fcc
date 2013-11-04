@@ -14,6 +14,7 @@ gem "redis"
 gem "resque", require: "resque/server"
 gem "rails_config"
 gem "better_errors"
+gem "ransack"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
