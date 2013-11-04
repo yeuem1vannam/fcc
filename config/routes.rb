@@ -4,10 +4,9 @@ Fcc::Application.routes.draw do
 
   resources :contests, only: [:index, :show] do
     resources :problems, only: [:show] do
-      resources :test_cases, only: [:show]
-      resources :submissions, only: [:show, :new, :create]
     end
   end
+  resources :submissions, only: [:index, :create]
 
   ## TODO @linhnt add to admin routes
   # namespace :admin do

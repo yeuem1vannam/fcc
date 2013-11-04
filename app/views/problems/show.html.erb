@@ -1,0 +1,30 @@
+<div>
+  <p><h1><%= @problem.name %></h1></p>
+  <p><b>Contest: </b><%=link_to @contest.name, contest_path(@contest) %></p>
+
+  <center>
+    <p><b>Rank: </b><%= @problem.difficult %></p>
+    <p><b>Limited time: </b><%= @problem.limited_time %></p>
+    <p><b>Limited memory: </b><%= @problem.limited_memory %></p>
+    <p><b>Limited source size: </b><%= @problem.limited_source_size %></p>
+    <p><b>Starting point: </b><%= @problem.starting_point %></p>
+    <p><b>Wrong answer decreased point: </b><%= @problem.wrong_answer_decreased_point %></p>
+    <p><b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %></p>
+  </center>
+
+  <% if @submission %>
+    <h3>Submit</h3>
+    <%= render 'submissions/form', submission: @submission %>
+  <% else %>
+    <h3>Contest ended!</h3>
+  <% end %>
+
+  <%= render 'submissions/submissions', submissions: @submissions %>
+
+  <h3>Content:</h3>
+  <p><%= @problem.content %></p>
+</div>
+
+<% if @test_cases %>
+  <%= render 'test_cases', test_cases: @test_cases %>
+<% end %>

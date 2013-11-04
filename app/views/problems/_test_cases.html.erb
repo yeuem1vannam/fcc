@@ -1,0 +1,21 @@
+<h2>Test cases</h2>
+<div>
+  <table border='1'>
+    <th>Input</th>
+    <th>Output</th>
+    <tbody>
+      <% test_cases.each do |test_case| %>
+        <tr>
+          <td>
+            <%= test_case.input %>
+          </td>
+          <td>
+            <%= test_case.output %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate test_cases %>

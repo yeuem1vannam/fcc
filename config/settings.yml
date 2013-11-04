@@ -7,3 +7,7 @@ pagination:
     show:
       submissions: 10
       test_cases: 10
+
+accepted_languages: ['C/C++', 'Ruby', 'PHP', 'Java', 'Python']
+
+problem_ranks: ['E', 'D', 'C', 'B', 'A']

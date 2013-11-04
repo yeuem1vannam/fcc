@@ -1,0 +1,50 @@
+<div>
+  <table border='1'>
+    <th>Name</th>
+    <th>Rank</th>
+    <th>Content</th>
+    <th>Limited time</th>
+    <th>Limited memory</th>
+    <th>Limited source size</th>
+    <th>Starting point</th>
+    <th>Wrong answer decreased point</th>
+    <th>Slowly decreased interval</th>
+    <tbody>
+      <% problems.each do |problem| %>
+        <tr>
+          <td>
+            <%= link_to contest_problem_path(@contest, problem) do %>
+              <%= problem.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= problem.difficult %>
+          </td>
+          <td>
+            <%= problem.content %>
+          </td>
+          <td>
+            <%= problem.limited_time %>
+          </td>
+          <td>
+            <%= problem.limited_memory %>
+          </td>
+          <td>
+            <%= problem.limited_source_size %>
+          </td>
+          <td>
+            <%= problem.starting_point %>
+          </td>
+          <td>
+            <%= problem.wrong_answer_decreased_point %>
+          </td>
+          <td>
+            <%= problem.slowly_decreased_interval %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate problems %>
