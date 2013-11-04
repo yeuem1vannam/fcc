@@ -11,6 +11,7 @@ gem "faye"
 gem "faye-websocket"
 gem "pry-byebug"
 gem "redis"
+gem "resque", require: "resque/server"
 gem "rails_config"
 gem "better_errors"
 

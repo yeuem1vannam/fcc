@@ -1,4 +1,5 @@
 Fcc::Application.routes.draw do
+  mount Resque::Server, at: '/resque'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
 
