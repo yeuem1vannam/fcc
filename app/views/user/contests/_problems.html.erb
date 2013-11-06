@@ -16,6 +16,9 @@
             <%= link_to user_contest_problem_path(@contest, problem) do %>
               <%= problem.name %>
             <% end %>
+            <% if current_user.try :solved?, problem %>
+              <p>Solved!</p>
+            <% end %>
           </td>
           <td>
             <%= problem.difficult %>

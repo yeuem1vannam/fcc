@@ -1,0 +1,28 @@
+<% if contest %>
+  <p><h2>Problem scores</h2></p>
+
+  <div>
+    <table border='1'>
+      <th>User</th>
+      <% contest.problems.each do |problem| %>
+        <th><%= problem.name %></th>
+      <% end %>
+      <tbody>
+        <% user_scores.each do |user_score| %>
+          <tr>
+            <td>
+              <%= user_score.user.email %>
+            </td>
+            <% contest.problems.each do |problem| %>
+              <td>
+                <%= user_score.user.submissions.of_problem(problem).accepted.first.received_point %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= paginate user_scores %>
+<% end %>

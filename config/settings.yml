@@ -7,6 +7,8 @@ pagination:
     show:
       submissions: 10
       test_cases: 10
+  user_scores:
+    index: 10
 
 accepted_languages: ['c', 'c++', 'ruby', 'php', 'java', 'python']
 

@@ -1,15 +1,18 @@
 <div>
   <p><h1><%= @problem.name %></h1></p>
+  <% if current_user.try :solved?, @problem %>
+    <p><h3>Solved!</h3></p>
+  <% end %>
   <p><b>Contest: </b><%=link_to @contest.name, user_contest_path(@contest) %></p>
 
   <center>
     <p><b>Rank: </b><%= @problem.difficult %></p>
-    <p><b>Limited time: </b><%= @problem.limited_time %></p>
-    <p><b>Limited memory: </b><%= @problem.limited_memory %></p>
-    <p><b>Limited source size: </b><%= @problem.limited_source_size %></p>
+    <p><b>Limited time: </b><%= @problem.limited_time %> ms</p>
+    <p><b>Limited memory: </b><%= @problem.limited_memory %> KB</p>
     <p><b>Starting point: </b><%= @problem.starting_point %></p>
+    <p><b>Limited source size: </b><%= @problem.limited_source_size %> bytes</p>
     <p><b>Wrong answer decreased point: </b><%= @problem.wrong_answer_decreased_point %></p>
-    <p><b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %></p>
+    <p><b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %> seconds</p>
   </center>
 
   <% if current_user %>

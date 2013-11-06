@@ -1,6 +1,7 @@
 class Contest < ActiveRecord::Base
   has_many :problems, dependent: :destroy
   has_many :submissions, through: :problems
+  has_many :user_scores
 
   default_scope ->{order 'created_at DESC'}
 

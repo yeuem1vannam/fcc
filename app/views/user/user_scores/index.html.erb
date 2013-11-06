@@ -1,0 +1,24 @@
+<p><h2>User scores</h2></p>
+
+<div>
+  <table border='1'>
+    <th>User</th>
+    <th>Score</th>
+    <tbody>
+      <% @user_scores.each do |user_score| %>
+        <tr>
+          <td>
+            <%= user_score.user.email %>
+          </td>
+          <td>
+            <%= user_score.point %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @user_scores %>
+
+<%= render 'user/contests/contest_scores', contest: @contest, user_scores: @user_scores %>
