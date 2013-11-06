@@ -5,6 +5,10 @@ class Contest < ActiveRecord::Base
   default_scope ->{order 'created_at DESC'}
 
   def opening?
-    end_at >= Time.now
+    end_at >= Time.now && start_at < Time.now
+  end
+
+  def ended?
+    end_at < Time.now
   end
 end

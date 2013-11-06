@@ -1,5 +1,5 @@
 <div>
-  <%= form_for @submission do |f| %>
+  <%= form_for @submission, url: :user_submissions do |f| %>
     <%= f.hidden_field :problem_id, value: @problem.id %>
     <p><label>Language</label><%= f.select :language, options_for_select(accepted_languages, @submission.language) %></p>
     <p><label>Choose file</label><%= f.file_field :attached_file %></p>

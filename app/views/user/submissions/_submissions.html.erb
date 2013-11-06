@@ -10,7 +10,7 @@
     <% submissions.each do |submission| %>
       <tr>
         <td>
-          <%= link_to contest_problem_path(submission.problem.contest, submission.problem) do %>
+          <%= link_to user_contest_problem_path(submission.problem.contest, submission.problem) do %>
             <h3><%= submission.problem.name %></h3>
           <% end %>
         </td>

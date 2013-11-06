@@ -8,6 +8,6 @@ pagination:
       submissions: 10
       test_cases: 10
 
-accepted_languages: ['C/C++', 'Ruby', 'PHP', 'Java', 'Python']
+accepted_languages: ['c', 'c++', 'ruby', 'php', 'java', 'python']
 
 problem_ranks: ['E', 'D', 'C', 'B', 'A']
