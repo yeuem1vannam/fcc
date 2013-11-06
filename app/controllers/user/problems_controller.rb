@@ -18,17 +18,17 @@ class User::ProblemsController < User::BaseUserController
   end
 
   def load_submissions
-    @submissions = current_user.submissions.of_problem(@problem.id).page(params[:page]).per(Settings.pagination.problems.show.submissions)
+    @submissions = current_user ? current_user.submissions.of_problem(@problem.id).page(params[:page]).per(Settings.pagination.problems.show.submissions) : []
   end
 
   def load_test_cases
-    unless @contest.opening?
+    if @contest.ended?
       @test_cases = @problem.test_cases.page(params[:page]).per(Settings.pagination.problems.show.test_cases)
     end
   end
 
   def setup_submission
-    if @contest.opening?
+    if current_user && @contest.opening?
       @submission = current_user.submissions.new problem_id: @problem.id
     end
   end

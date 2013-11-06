@@ -6,6 +6,6 @@
   <p><b>Result announced at: </b><%= @contest.result_announced_at %></p>
 </div>
 
-<p><%= link_to :contests, contests_path %></p>
+<p><%= link_to :contests, user_contests_path %></p>
 
 <%= render 'problems', problems: @problems %>

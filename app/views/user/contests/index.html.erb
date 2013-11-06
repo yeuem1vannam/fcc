@@ -10,7 +10,7 @@
     <% @contests.each do |contest| %>
       <tr>
         <td>
-          <%= link_to contest_path(contest) do %>
+          <%= link_to user_contest_path(contest) do %>
             <h3><%= contest.name %></h3>
           <% end %>
         </td>

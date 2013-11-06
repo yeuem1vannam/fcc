@@ -13,7 +13,7 @@
       <% problems.each do |problem| %>
         <tr>
           <td>
-            <%= link_to contest_problem_path(@contest, problem) do %>
+            <%= link_to user_contest_problem_path(@contest, problem) do %>
               <%= problem.name %>
             <% end %>
           </td>

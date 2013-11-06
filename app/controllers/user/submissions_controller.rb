@@ -9,9 +9,9 @@ class User::SubmissionsController < User::BaseUserController
   def create
     @submission = current_user.submissions.new submission_params
     if @submission.save
-      redirect_to contest_problem_path(@problem.contest, @problem), notice: "Submission was created successfully"
+      redirect_to user_contest_problem_path(@problem.contest, @problem), notice: "Submission was created successfully"
     else
-      redirect_to contest_problem_path(@problem.contest, @problem), notice: "Submission was created unsuccessfully"
+      redirect_to user_contest_problem_path(@problem.contest, @problem), notice: "Submission was created unsuccessfully"
     end
   end
 

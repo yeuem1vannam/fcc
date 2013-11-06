@@ -1,6 +1,6 @@
 <div>
   <p><h1><%= @problem.name %></h1></p>
-  <p><b>Contest: </b><%=link_to @contest.name, contest_path(@contest) %></p>
+  <p><b>Contest: </b><%=link_to @contest.name, user_contest_path(@contest) %></p>
 
   <center>
     <p><b>Rank: </b><%= @problem.difficult %></p>
@@ -12,14 +12,16 @@
     <p><b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %></p>
   </center>
 
-  <% if @submission %>
-    <h3>Submit</h3>
-    <%= render 'submissions/form', submission: @submission %>
-  <% else %>
-    <h3>Contest ended!</h3>
-  <% end %>
+  <% if current_user %>
+    <% if @contest.opening? %>
+      <h3>Submit</h3>
+      <%= render 'user/submissions/form', submission: @submission %>
+    <% elsif @contest.ended? %>
+      <h3>Contest ended!</h3>
+    <% end %>
 
-  <%= render 'submissions/submissions', submissions: @submissions %>
+    <%= render 'user/submissions/submissions', submissions: @submissions %>
+  <% end %>
 
   <h3>Content:</h3>
   <p><%= @problem.content %></p>

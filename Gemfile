@@ -61,3 +61,4 @@ end
 gem 'ckeditor'
 gem 'paperclip'
 gem 'kaminari'
+gem 'state_machine'
