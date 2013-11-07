@@ -5,9 +5,10 @@ Fcc::Application.routes.draw do
 
   namespace :user do
     resources :contests, only: [:index, :show] do
-      resources :problems, only: [:show] do
-      end
+      resources :problems, only: [:show]
+      resources :user_scores, only: [:index]
     end
     resources :submissions, only: [:index, :create]
+    resources :user_scores, only: [:index]
   end
 end

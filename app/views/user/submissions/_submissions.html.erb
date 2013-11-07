@@ -6,6 +6,9 @@
   <th>State</th>
   <th>Result status</th>
   <th>Last passed test case</th>
+  <th>Used time</th>
+  <th>Used memory</th>
+  <th>Received point</th>
   <tbody>
     <% submissions.each do |submission| %>
       <tr>
@@ -25,6 +28,15 @@
         </td>
         <td>
           <%= submission.last_passed_test_case %>
+        </td>
+        <td>
+          <%= submission.used_time %> ms
+        </td>
+        <td>
+          <%= submission.used_memory %> KB
+        </td>
+        <td>
+          <%= submission.received_point %>
         </td>
       </tr>
     <% end %>
