@@ -13,6 +13,7 @@
     <p><b>Limited source size: </b><%= @problem.limited_source_size %> bytes</p>
     <p><b>Wrong answer decreased point: </b><%= @problem.wrong_answer_decreased_point %></p>
     <p><b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %> seconds</p>
+    <p><b>Number of test cases: </b><%= @problem.test_cases.count %></p>
   </center>
 
   <% if current_user %>
@@ -30,6 +31,7 @@
   <p><%= @problem.content %></p>
 </div>
 
-<% if @test_cases %>
+<%# TODO test_cases list %>
+<% if false && @test_cases %>
   <%= render 'test_cases', test_cases: @test_cases %>
 <% end %>

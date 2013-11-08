@@ -6,6 +6,7 @@
   <th>Start at</th>
   <th>End at</th>
   <th>Result announced at</th>
+  <th></th>
   <tbody>
     <% @contests.each do |contest| %>
       <tr>
@@ -25,6 +26,9 @@
         </td>
         <td>
           <%= contest.result_announced_at %>
+        </td>
+        <td>
+          <%= link_to 'Contest scores', user_contest_user_scores_path(contest) %>
         </td>
       </tr>
     <% end %>

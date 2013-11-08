@@ -1,17 +1,17 @@
-<p><h2>User scores</h2></p>
+<p><h2>Total user scores</h2></p>
 
 <div>
   <table border='1'>
     <th>User</th>
     <th>Score</th>
     <tbody>
-      <% @user_scores.each do |user_score| %>
+      <% @total_scores.sort_by{|user_id,total_score| total_score}.reverse.each do |user_score| %>
         <tr>
           <td>
-            <%= user_score.user.email %>
+            <%= User.find(user_score[0]).email %>
           </td>
           <td>
-            <%= user_score.point %>
+            <%= user_score[1] %>
           </td>
         </tr>
       <% end %>
