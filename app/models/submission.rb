@@ -1,5 +1,7 @@
 class Submission < ActiveRecord::Base
   VALID_REGEX = /(?<output>[^\[]+)\[TIME:(?<used_time>[^\]]*)ms\]\[MEMORY:(?<used_memory>[^\]]*)KB\]/
+  SUBMISSIONS_DIR = Settings.submissions_dir
+  TEST_CASES_DIR = Problem::TEST_CASES_DIR
 
   belongs_to :user
   belongs_to :problem
@@ -40,14 +42,17 @@ class Submission < ActiveRecord::Base
     used_time = 0;
     used_memory = 0;
 
-    problem.test_cases.each_with_index do |test_case,index|
-      begin
-        res = Timeout::timeout(problem.limited_time/1000.0) {`bin/run_code.sh 'tmp/submissions/#{user_id}/#{problem_id}/#{id}' #{Settings.accepted_languages[language]} #{problem.limited_memory} "#{test_case.input}"`}.chomp
+    begin
+      problem.test_cases.each_with_index do |test_case,index|
+        res = Timeout::timeout(problem.limited_time/1000.0) {`bin/run_code.sh #{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name} #{Settings.accepted_languages[language]} #{test_case[:input]}`}.chomp
         output = res.match(VALID_REGEX).try :[], :output
         used_time = [res.match(VALID_REGEX).try(:[], :used_time).to_i, used_time].max
         used_memory = [res.match(VALID_REGEX).try(:[], :used_memory).to_i, used_memory].max
         if output
-          if output == test_case.output
+          if used_memory > problem.limited_memory
+            result = 'Limited memory exceeded'
+            break
+          elsif output == File.read("#{test_case[:output]}").chomp
             update last_passed_test_case: index + 1
           else
             result = 'Wrong Answer'
@@ -62,13 +67,12 @@ class Submission < ActiveRecord::Base
                    end
           break
         end
-      rescue
-        result = 'Limited time exceeded'
-        break
       end
+    rescue
+      result = 'Limited time exceeded'
     end
 
-    unless user.solved? problem
+    if (result == 'Accepted') && !user.solved?(problem)
       problem.add_point self
     end
 
@@ -76,10 +80,6 @@ class Submission < ActiveRecord::Base
     update used_memory: used_memory
     update result_status: result
     finish!
-  end
-
-  def accepted?
-    result_status == 'Accepted'
   end
 
   def receive_point point
@@ -106,16 +106,25 @@ class Submission < ActiveRecord::Base
     if attached_file.tempfile.size > problem.limited_source_size
       errors.add(:problem, 'Limited source size exceeded')
     else
-      Dir.mkdir("tmp/submissions") unless Dir.exist?("tmp/submissions")
-      Dir.mkdir("tmp/submissions/#{user_id}") unless Dir.exist?("tmp/submissions/#{user_id}")
-      Dir.mkdir("tmp/submissions/#{user_id}/#{problem_id}") unless Dir.exist?("tmp/submissions/#{user_id}/#{problem_id}")
-      directory = "tmp/submissions/#{user_id}/#{problem_id}/"
-      path = File.join(directory, id.to_s)
+      Dir.mkdir(SUBMISSIONS_DIR) unless Dir.exist?(SUBMISSIONS_DIR)
+      Dir.mkdir("#{SUBMISSIONS_DIR}/#{user_id}") unless Dir.exist?("#{SUBMISSIONS_DIR}/#{user_id}")
+      Dir.mkdir("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}") unless Dir.exist?("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}")
+      Dir.mkdir("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}") unless Dir.exist?("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}")
+      directory = "#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}"
+      path = File.join(directory, file_name)
       File.open(path, "wb") { |f| f.write(attached_file.tempfile.read) }
     end
   end
 
   def runner_enqueue
     Resque.enqueue SubmissionRunner, id
+  end
+
+  def file_name
+    if Settings.accepted_languages[language].to_sym.in? Settings.special_language_files.to_hash.keys
+      Settings.special_language_files.send(Settings.accepted_languages[language])
+    else
+      id.to_s
+    end + Settings.language_extensions[language]
   end
 end

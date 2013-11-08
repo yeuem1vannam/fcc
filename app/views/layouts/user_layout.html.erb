@@ -1,6 +1,7 @@
 <% content_for :stylesheets do -%>
 <%= stylesheet_link_tag :admin, media: "all" %>
 <% end -%>
+<%= render 'layouts/user_header' %>
 <% content_for :content do -%>
   <%= yield %>
 <% end -%>

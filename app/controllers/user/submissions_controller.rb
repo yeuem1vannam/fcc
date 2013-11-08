@@ -1,4 +1,5 @@
 class User::SubmissionsController < User::BaseUserController
+  before_filter :check_login
   before_filter :load_problem, only: [:create]
   before_filter :check_opening_contest, only: [:create]
 
@@ -21,11 +22,14 @@ class User::SubmissionsController < User::BaseUserController
   end
 
   def submission_params
-    ## TODO permit upload file or content
     params.require(:submission).permit(:problem_id, :language, :attached_file)
   end
 
   def check_opening_contest
     redirect_to :index unless @problem.contest.opening?
+  end
+
+  def check_login
+    redirect_to user_contests_path unless current_user
   end
 end

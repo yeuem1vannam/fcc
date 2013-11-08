@@ -1,0 +1,12 @@
+<table border='1'>
+  <td><%= link_to "Contests", user_contests_path %></td>
+  <% if current_user %>
+    <td><%= link_to "Submissions", user_submissions_path %></td>
+  <% end %>
+  <td><%= link_to "User Scores", user_user_scores_path %></td>
+  <% if current_user %>
+    <td><%= link_to "Sign out", destroy_user_session_path, method: :delete %></td>
+  <% else %>
+    <td><%= link_to "Sign in", new_user_session_path %></td>
+  <% end %>
+</table>

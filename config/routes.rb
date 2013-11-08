@@ -1,6 +1,7 @@
 Fcc::Application.routes.draw do
   mount Resque::Server, at: '/resque'
   mount Ckeditor::Engine => '/ckeditor'
+  root 'user/contests#index'
 
   ## TODO @linhnt add to admin routes
   # namespace :admin do

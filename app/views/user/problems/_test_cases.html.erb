@@ -7,15 +7,13 @@
       <% test_cases.each do |test_case| %>
         <tr>
           <td>
-            <%= test_case.input %>
+            <%= File.read(test_case[:input]).first(Settings.test_case_displayed_chars) %>
           </td>
           <td>
-            <%= test_case.output %>
+            <%= File.read(test_case[:output]).first(Settings.test_case_displayed_chars) %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
-<%= paginate test_cases %>

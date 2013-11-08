@@ -12,4 +12,8 @@ class Contest < ActiveRecord::Base
   def ended?
     end_at < Time.now
   end
+
+  def started?
+    start_at < Time.now
+  end
 end
