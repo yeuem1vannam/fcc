@@ -5,6 +5,6 @@ class User::ContestsController < User::BaseUserController
 
   def show
     @contest = Contest.find params[:id]
-    @problems = @contest.problems.page(params[:page]).per(Settings.pagination.contests.show.problems)
+    @problems = @contest.problems.desc_rank.page(params[:page]).per(Settings.pagination.contests.show.problems)
   end
 end

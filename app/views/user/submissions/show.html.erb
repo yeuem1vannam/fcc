@@ -1,0 +1,11 @@
+<div class="row-fluid">
+<div class="span12">
+<div>
+<h5>By <%= @submission.user.email %>, contest: <%= @submission.problem.contest.name %>, problem: <%= @submission.problem.name %>, <%= @submission.result_status %>, last passed test case: <%= @submission.last_passed_test_case %><h5>
+</div>
+<?prettify?>
+<pre class="prettyprint linenums">
+<%= @submission.source_code %>
+</pre>
+</div>
+</div>

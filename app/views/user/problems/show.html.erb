@@ -1,37 +1,52 @@
-<div>
-  <p><h1><%= @problem.name %></h1></p>
-  <% if current_user.try :solved?, @problem %>
-    <p><h3>Solved!</h3></p>
-  <% end %>
-  <p><b>Contest: </b><%=link_to @contest.name, user_contest_path(@contest) %></p>
+<div class="span12">
+  <div class="row-fluid">
+    <div class="span9">
+      <div class="text-center">
+        <h3>
+          <%= @problem.name %>
+        </h3>
+        <% if current_user.try :solved?, @problem %>
+          <h4><span class="text-success">Solved!</span></h4>
+        <% end %>
+        <p><b>Contest: </b><%=link_to @contest.name, user_contest_path(@contest) %></p>
 
-  <center>
-    <p><b>Rank: </b><%= @problem.difficult %></p>
-    <p><b>Limited time: </b><%= @problem.limited_time %> ms</p>
-    <p><b>Limited memory: </b><%= @problem.limited_memory %> KB</p>
-    <p><b>Starting point: </b><%= @problem.starting_point %></p>
-    <p><b>Limited source size: </b><%= @problem.limited_source_size %> bytes</p>
-    <p><b>Wrong answer decreased point: </b><%= @problem.wrong_answer_decreased_point %></p>
-    <p><b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %> seconds</p>
-    <p><b>Number of test cases: </b><%= @problem.test_cases.count %></p>
-  </center>
+        <p>
+        <b>Rank: </b><%= @problem.difficult %><br/>
+        <b>Limited time: </b><%= @problem.limited_time %> ms<br/>
+        <b>Limited memory: </b><%= @problem.limited_memory %> KB<br/>
+        <b>Starting point: </b><%= @problem.starting_point %><br/>
+        <b>Limited source size: </b><%= @problem.limited_source_size %> bytes<br/>
+        <b>Wrong answer decreased point: </b><%= @problem.wrong_answer_decreased_point %><br/>
+        <b>Slowly decreased interval: </b><%= @problem.slowly_decreased_interval %> seconds<br/>
+        <b>Number of test cases: </b><%= @problem.test_cases.count %><br/>
+        </p>
+      </div>
 
-  <% if current_user %>
-    <% if @contest.opening? %>
-      <h3>Submit</h3>
-      <%= render 'user/submissions/form', submission: @submission %>
-    <% elsif @contest.ended? %>
-      <h3>Contest ended!</h3>
-    <% end %>
-
-    <%= render 'user/submissions/submissions', submissions: @submissions %>
-  <% end %>
-
-  <h3>Content:</h3>
-  <p><%= @problem.content %></p>
+      <h3>Content:</h3>
+      <p><%= @problem.content.html_safe %></p>
+    </div>
+    <div class="span3">
+      <% if current_user %>
+        <% if @contest.opening? %>
+          <h3>Submit</h3>
+          <%= render 'user/submissions/form', submission: @submission %>
+        <% elsif @contest.ended? %>
+          <h3>Contest ended!</h3>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<%# TODO test_cases list %>
-<% if false && @test_cases %>
-  <%= render 'test_cases', test_cases: @test_cases %>
-<% end %>
+<div class="span12">
+  <div class="row-fluid">
+    <% if current_user %>
+      <%= render 'user/submissions/submissions', submissions: @submissions %>
+    <% end %>
+
+    <%# TODO test_cases list %>
+    <% if false && @test_cases %>
+      <%= render 'test_cases', test_cases: @test_cases %>
+    <% end %>
+  </div>
+</div>

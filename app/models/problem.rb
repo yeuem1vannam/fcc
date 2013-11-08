@@ -1,6 +1,8 @@
 class Problem < ActiveRecord::Base
   TEST_CASES_DIR = Settings.test_cases_dir
 
+  scope :desc_rank, ->{order 'rank desc'}
+
   belongs_to :contest
   has_many :submissions, dependent: :destroy
 
