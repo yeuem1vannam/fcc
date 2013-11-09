@@ -1,70 +1,72 @@
 <h1>My submissions</h1>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <% if current_user.is_reviewer? %>
-        <th>ID</th>
-        <th>User</th>
-      <% end %>
-      <th>Problem</th>
-      <th>Language</th>
-      <th>State</th>
-      <th>Result status</th>
-      <th>Last passed test case</th>
-      <th>Used time</th>
-      <th>Used memory</th>
-      <th>Received point</th>
-      <th>When</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% submissions.each do |submission| %>
-      <% css_class = if submission.queued? %>
-        <% 'info' %>
-      <% elsif submission.accepted? %>
-        <% 'success' %>
-      <% else %>
-        <% 'error' %>
-      <% end %>
-
-      <tr class="<%= css_class %>">
+<% unless submissions.blank? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
         <% if current_user.is_reviewer? %>
-          <td><%= link_to submission.id, user_submission_path(submission) %></td>
-          <td><%= submission.user.email %></td>
+          <th>ID</th>
+          <th>User</th>
         <% end %>
-        <td>
-          <%= link_to user_contest_problem_path(submission.problem.contest, submission.problem) do %>
-            <%= submission.problem.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= Settings.accepted_languages[submission.language] %>
-        </td>
-        <td>
-          <%= submission.state %>
-        </td>
-        <td>
-          <%= submission.result_status %>
-        </td>
-        <td>
-          <%= submission.last_passed_test_case %>
-        </td>
-        <td>
-          <%= submission.used_time %> ms
-        </td>
-        <td>
-          <%= submission.used_memory %> KB
-        </td>
-        <td>
-          <%= submission.received_point %>
-        </td>
-        <td>
-          <%= local_time submission.created_at %>
-        </td>
+        <th>Problem</th>
+        <th>Language</th>
+        <th>State</th>
+        <th>Result status</th>
+        <th>Last passed test case</th>
+        <th>Used time</th>
+        <th>Used memory</th>
+        <th>Received point</th>
+        <th>When</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% submissions.each do |submission| %>
+        <% css_class = if submission.queued? %>
+          <% 'info' %>
+        <% elsif submission.accepted? %>
+          <% 'success' %>
+        <% else %>
+          <% 'error' %>
+        <% end %>
 
-<%= paginate submissions %>
+        <tr class="<%= css_class %>">
+          <% if current_user.is_reviewer? %>
+            <td><%= link_to submission.id, user_submission_path(submission) %></td>
+            <td><%= submission.user.email %></td>
+          <% end %>
+          <td>
+            <%= link_to user_contest_problem_path(submission.problem.contest, submission.problem) do %>
+              <%= submission.problem.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= Settings.accepted_languages[submission.language] %>
+          </td>
+          <td>
+            <%= submission.state %>
+          </td>
+          <td>
+            <%= submission.result_status %>
+          </td>
+          <td>
+            <%= submission.last_passed_test_case %>
+          </td>
+          <td>
+            <%= submission.used_time %> ms
+          </td>
+          <td>
+            <%= submission.used_memory %> KB
+          </td>
+          <td>
+            <%= submission.received_point %>
+          </td>
+          <td>
+            <%= local_time submission.created_at %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate submissions %>
+<% end %>
