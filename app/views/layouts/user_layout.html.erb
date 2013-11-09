@@ -2,12 +2,19 @@
   <%= stylesheet_link_tag 'bootstrap.min', media: "all" %>
   <%= stylesheet_link_tag 'bootstrap-responsive.min', media: "all" %>
   <%= stylesheet_link_tag 'prettify/prettify.css', media: "all" %>
+  <style>
+    body{
+      background-image: url("/assets/back.jpg");
+    }
+  </style>
 <% end -%>
-<div class="container">
+<div class="container" style="background-color: white;">
   <%= render 'layouts/user_header' %>
-  <% content_for :content do -%>
-    <%= yield %>
-  <% end -%>
+    <% content_for :content do -%>
+      <div class = "container" style = "min-height: 600px; width: 90%;">
+        <%= yield %>
+      </div>
+    <% end -%>
   <% content_for :javascripts do -%>
     <%= javascript_include_tag(:admin) %>
     <%= javascript_include_tag("prettify.js") %>

@@ -1,33 +1,27 @@
 <div class="row-fluid">
-  <div class="span4">
-    <%= link_to root_path do %>
-      <%= image_tag 'logo.png' %>
-    <% end %>
-  </div>
-  <div class="span8">
-    <h1>Code Contest</h1>
-  </div>
+  <%= link_to root_path do %>
+    <%= image_tag 'banner.jpg' %>
+  <% end %>
 </div>
-<div class="span12">
-  <div class="span12">
-    <ul class="nav nav-pills">
-      <%= nav_item 'Home', root_path %>
-      <% if current_user %>
-      <%= nav_item 'Submissions', user_submissions_path %>
-      <% end %>
-      <%= nav_item "Scores Board", user_user_scores_path %>
-      <li class="dropdown pull-right">
-      <% if current_user %>
-        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= current_user.email %><strong class="caret"></strong></a>
-        <ul class="dropdown-menu">
-          <li>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-          </li>
-        </ul>
-      <% else %>
-        <%= link_to "Sign in", new_user_session_path %>
-      <% end %>
-      </li>
-    </ul>
-  </div>
+
+<div class="span12" style="margin-left:0px;">
+ <ul class="nav nav-pills" style="background-color: rgb(211, 231, 255);">
+   <%= nav_item 'Home', root_path %>
+   <% if current_user %>
+   <%= nav_item 'Submissions', user_submissions_path %>
+   <% end %>
+   <%= nav_item "Scores Board", user_user_scores_path %>
+   <li class="dropdown pull-right">
+   <% if current_user %>
+     <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= current_user.email %><strong class="caret"></strong></a>
+     <ul class="dropdown-menu">
+       <li>
+       <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+       </li>
+     </ul>
+   <% else %>
+     <%= link_to "Sign in", new_user_session_path %>
+   <% end %>
+   </li>
+ </ul>
 </div>
