@@ -1,38 +1,40 @@
-<div class="row-fluid">
-  <div class="span12">
-    <% unless @contest %>
-      <p><h2>Total user scores</h2></p>
-      <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Score</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @total_scores.each do |user_score| %>
+<% unless @total_scores.blank? %>
+  <div class="row-fluid">
+    <div class="span12">
+      <% unless @contest %>
+        <p><h2>Total user scores</h2></p>
+        <table class="table table-condensed">
+          <thead>
             <tr>
-              <td>
-                <%= User.find(user_score[0]).email %>
-              </td>
-              <td>
-                <div class="progress progress-striped progress-success">
-                  <div class="bar" style="width:<%= user_score[1]*100.0/@total_scores[0][1]%>%;"></div>
-                </div>
-              </td>
-              <td>
-                <%= user_score[1] %>
-              </td>
+              <th>User</th>
+              <th>Score</th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @total_scores.each do |user_score| %>
+              <tr>
+                <td>
+                  <%= User.find(user_score[0]).email %>
+                </td>
+                <td>
+                  <div class="progress progress-striped progress-success">
+                    <div class="bar" style="width:<%= user_score[1]*100.0/@total_scores[0][1]%>%;"></div>
+                  </div>
+                </td>
+                <td>
+                  <%= user_score[1] %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-      <%= paginate @user_scores %>
-    <% else %>
+        <%= paginate @user_scores %>
+      <% else %>
 
-      <%= render 'user/contests/contest_scores', contest: @contest, user_scores: @user_scores %>
-    <% end %>
+        <%= render 'user/contests/contest_scores', contest: @contest, user_scores: @user_scores %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
