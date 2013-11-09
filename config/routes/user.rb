@@ -8,7 +8,7 @@ Fcc::Application.routes.draw do
       resources :problems, only: [:show]
       resources :user_scores, only: [:index]
     end
-    resources :submissions, only: [:index, :create]
+    resources :submissions, only: [:index, :create, :show]
     resources :user_scores, only: [:index]
   end
 end

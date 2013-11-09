@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def solved? problem
     !submissions.of_problem(problem).accepted.blank?
   end
+
+  def is_reviewer?
+    email.in? Settings.reviewer_emails
+  end
 end

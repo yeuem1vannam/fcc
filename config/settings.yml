@@ -19,3 +19,7 @@ problem_ranks: ['E', 'D', 'C', 'B', 'A']
 test_cases_dir: 'tmp/test_cases'
 submissions_dir: 'tmp/submissions'
 test_case_displayed_chars: 255
+
+default_time_zone: 7
+time_format: '%Y/%m/%d %H:%M:%S'
+reviewer_emails: ['nguyen.dang.huy@framgia.com', 'nguyen.anh.tien@framgia.com']

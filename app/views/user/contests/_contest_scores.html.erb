@@ -1,29 +1,36 @@
-<% if contest %>
-  <p><h2>Contest scores</h2></p>
-  <%= link_to 'Contest', user_contest_path(contest) %>
+<p><h2>Contest scores</h2></p>
+<%= link_to 'Contest', user_contest_path(contest) %>
 
-  <div>
-    <table border='1'>
+<table class="table table-bordered">
+  <thead>
+    <tr>
       <th>User</th>
       <% contest.problems.each do |problem| %>
         <th><%= problem.name %></th>
       <% end %>
-      <tbody>
-        <% user_scores.each do |user_score| %>
-          <tr>
-            <td>
-              <%= user_score.user.email %>
-            </td>
-            <% contest.problems.each do |problem| %>
-              <td>
-                <%= user_score.user.submissions.of_problem(problem).accepted.first.received_point %>
-              </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% user_scores.each do |user_score| %>
+      <tr>
+        <td>
+          <%= user_score.user.email %>
+        </td>
+        <% contest.problems.each do |problem| %>
+          <td style="text-align:center;">
+            <% received_point = user_score.user.submissions.of_problem(problem).accepted.maximum :received_point %>
+            <% if received_point %>
+              <center>
+              <div style="width:120px;">
+                <button class="btn btn-block btn-success"><%= received_point %></button>
+              </div>
+              </center>
             <% end %>
-          </tr>
+          </td>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-  <%= paginate user_scores %>
-<% end %>
+<%= paginate user_scores %>

@@ -95,6 +95,14 @@ class Submission < ActiveRecord::Base
     ((created_at - problem.contest.start_at) / problem.slowly_decreased_interval).round
   end
 
+  def accepted?
+    result_status == 'Accepted'
+  end
+
+  def source_code
+    File.read("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name}").html_safe
+  end
+
   private
   def check_opening_contest
     unless problem.try(:contest).try(:opening?)

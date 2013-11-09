@@ -1,31 +1,35 @@
-<h1>Contests</h1>
+<h1>All Contests</h1>
 
-<table border='1'>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Start at</th>
-  <th>End at</th>
-  <th>Result announced at</th>
-  <th></th>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th>Result announced</th>
+      <th>Scores</th>
+    </tr>
+  </thead>
   <tbody>
     <% @contests.each do |contest| %>
       <tr>
         <td>
           <%= link_to user_contest_path(contest) do %>
-            <h3><%= contest.name %></h3>
+            <%= contest.name %>
           <% end %>
         </td>
         <td>
           <%= contest.description %>
         </td>
         <td>
-          <%= contest.start_at %>
+          <%= local_time contest.start_at %>
         </td>
         <td>
-          <%= contest.end_at %>
+          <%= local_time contest.end_at %>
         </td>
         <td>
-          <%= contest.result_announced_at %>
+          <%= local_time contest.result_announced_at %>
         </td>
         <td>
           <%= link_to 'Contest scores', user_contest_user_scores_path(contest) %>

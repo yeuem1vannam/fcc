@@ -1,12 +1,18 @@
 <% content_for :stylesheets do -%>
-<%= stylesheet_link_tag :admin, media: "all" %>
+  <%= stylesheet_link_tag 'bootstrap.min', media: "all" %>
+  <%= stylesheet_link_tag 'bootstrap-responsive.min', media: "all" %>
+  <%= stylesheet_link_tag 'prettify/prettify.css', media: "all" %>
 <% end -%>
-<%= render 'layouts/user_header' %>
-<% content_for :content do -%>
-  <%= yield %>
-<% end -%>
-<% content_for :javascripts do -%>
-<%= javascript_include_tag(:admin) %>
-<% end -%>
+<div class="container">
+  <%= render 'layouts/user_header' %>
+  <% content_for :content do -%>
+    <%= yield %>
+  <% end -%>
+  <% content_for :javascripts do -%>
+    <%= javascript_include_tag(:admin) %>
+    <%= javascript_include_tag("prettify.js") %>
+  <% end -%>
 
-<%= render partial: "layouts/base_layout" %>
+  <%= render partial: "layouts/base_layout" %>
+  <%= render 'layouts/user_footer' %>
+</div>
