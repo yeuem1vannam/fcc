@@ -8,9 +8,9 @@
 
     <p>
     <b>Description: </b><%= @contest.description %><br/>
-    <b>Start at: </b><%= @contest.start_at %><br/>
-    <b>End at: </b><%= @contest.end_at %><br/>
-    <b>Result announced at: </b><%= @contest.result_announced_at %>
+    <b>Start at: </b><%= local_time @contest.start_at %><br/>
+    <b>End at: </b><%= local_time @contest.end_at %><br/>
+    <b>Result announced at: </b><%= local_time @contest.result_announced_at %>
     </p>
   </div><br/>
 

@@ -17,7 +17,7 @@
           <td>
             <%= user_score.user.email %>
           </td>
-          <% contest.problems.each do |problem| %>
+          <% contest.problems.desc_rank.each do |problem| %>
             <td style="text-align:center;">
               <% received_point = user_score.user.submissions.of_problem(problem).accepted.maximum :received_point %>
               <% if received_point %>

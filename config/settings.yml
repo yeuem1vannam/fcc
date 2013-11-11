@@ -16,8 +16,8 @@ special_language_files:
 
 problem_ranks: ['E', 'D', 'C', 'B', 'A']
 
-test_cases_dir: 'tmp/test_cases'
-submissions_dir: 'tmp/submissions'
+test_cases_dir: '/home/deploy/fcc/tmp/test_cases'
+submissions_dir: '/home/deploy/fcc/tmp/submissions'
 test_case_displayed_chars: 255
 
 default_time_zone: 7
