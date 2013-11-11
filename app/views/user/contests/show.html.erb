@@ -1,18 +1,11 @@
-<div class="span12">
-  <div class="text-center">
-    <h3><%= @contest.name %></h3>
-
-    <p>
-    <%= link_to 'Contest scores', user_contest_user_scores_path(@contest), class: 'btn btn-large btn-success' %>
-    </p>
-
-    <p>
-    <b>Description: </b><%= @contest.description %><br/>
-    <b>Start at: </b><%= @contest.start_at %><br/>
-    <b>End at: </b><%= @contest.end_at %><br/>
-    <b>Result announced at: </b><%= @contest.result_announced_at %>
-    </p>
-  </div><br/>
-
+<h3><%= @contest.name %></h3>
+<p>
+  <%= link_to 'Contest scores', user_contest_user_scores_path(@contest), class: 'btn btn-large btn-success' %>
+</p>
+<p>
+  <b>Description: </b><%= @contest.description %><br/>
+  <b>Start at: </b><%= @contest.start_at %><br/>
+  <b>End at: </b><%= @contest.end_at %><br/>
+  <b>Result announced at: </b><%= @contest.result_announced_at %>
+</p>
 <%= render 'problems', problems: @problems %>
-</div>
