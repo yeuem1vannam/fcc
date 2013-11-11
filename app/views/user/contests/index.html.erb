@@ -1,14 +1,11 @@
-<h1>All Contests</h1>
+<h1 style = "text-align: center"><%= image_tag("terminal.png", width: "100px")%>   All Contests</h1>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Name (Number of submissons)</th>
       <th>Description</th>
-      <th>Start at</th>
-      <th>End at</th>
-      <th>Result announced</th>
-      <th>Scores</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -16,23 +13,19 @@
       <tr>
         <td>
           <%= link_to user_contest_path(contest) do %>
-            <%= contest.name %>
+            <%= truncate(contest.name, length: 30) %> <span class='badge'><%= contest.submissions.count %></span>
           <% end %>
+          <%= link_to 'Contest scores', user_contest_user_scores_path(contest), class: "btn btn-success", style: "float: right" %>
         </td>
         <td>
           <%= contest.description %>
         </td>
         <td>
-          <%= local_time contest.start_at %>
-        </td>
-        <td>
-          <%= local_time contest.end_at %>
-        </td>
-        <td>
-          <%= local_time contest.result_announced_at %>
-        </td>
-        <td>
-          <%= link_to 'Contest scores', user_contest_user_scores_path(contest) %>
+<% if contest.ended? %>
+  <span class="label label-default">::: ENDED :::</span>
+<% else %>
+  <span class="label label-success">!!! ON AIR !!!</span>
+<% end %>
         </td>
       </tr>
     <% end %>
