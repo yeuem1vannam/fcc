@@ -39,13 +39,12 @@
   </div>
 </div>
 
-<div class="span12">
+<div class="span9">
   <div class="row-fluid">
     <% if current_user %>
       <%= render 'user/submissions/submissions', submissions: @submissions %>
     <% end %>
 
-    <%# TODO test_cases list %>
     <% if false && @test_cases %>
       <%= render 'test_cases', test_cases: @test_cases %>
     <% end %>

@@ -1,9 +1,9 @@
 class User::SubmissionsController < User::BaseUserController
   before_filter :check_login
-  before_filter :check_reviewers, only: [:show]
   before_filter :load_problem, only: [:create]
   before_filter :load_submission, only: [:show]
   before_filter :check_submitable, only: [:create]
+  before_filter :check_viewable, only: [:show]
 
   def index
     @submissions = if current_user.is_reviewer?
@@ -42,8 +42,8 @@ class User::SubmissionsController < User::BaseUserController
     redirect_to user_contests_path unless current_user
   end
 
-  def check_reviewers
-    redirect_to user_contests_path unless current_user.is_reviewer?
+  def check_viewable
+    redirect_to user_contests_path unless current_user.try(:is_reviewer?) || (@submission.problem.contest.ended? && (current_user == @submission.user))
   end
 
   def load_submission

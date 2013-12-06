@@ -4,6 +4,6 @@ class User::BaseUserController < ApplicationController
 
   private
   def check_maintenance
-    render 'public/maintenance.html' if Settings.is_maintenance && !current_user.try(:is_reviewer?)
+    render "#{Rails.root}/public/maintenance.html" if Settings.is_maintenance && !current_user.try(:is_reviewer?)
   end
 end

@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :submissions
-  has_many :user_scores
+  has_many :submissions, dependent: :destroy
+  has_many :user_scores, dependent: :destroy
 
   def solved? problem
     !submissions.of_problem(problem).accepted.blank?

@@ -56,6 +56,7 @@ class Submission < ActiveRecord::Base
             update last_passed_test_case: index + 1
           else
             result = 'Wrong Answer'
+            update failed_test_case_result: output
             break
           end
         else
@@ -99,8 +100,20 @@ class Submission < ActiveRecord::Base
     result_status == 'Accepted'
   end
 
+  def wrong_answer?
+    result_status == 'Wrong Answer'
+  end
+
   def source_code
     File.read("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name}").html_safe
+  end
+
+  def failed_test_case_input
+    File.read(problem.test_cases[last_passed_test_case.to_i][:input]).html_safe unless accepted?
+  end
+
+  def failed_test_case_output
+    File.read(problem.test_cases[last_passed_test_case.to_i][:output]).html_safe unless accepted?
   end
 
   private
