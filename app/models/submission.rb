@@ -105,7 +105,7 @@ class Submission < ActiveRecord::Base
   end
 
   def source_code
-    File.read("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name}").html_safe
+    File.read("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name}").html_safe.gsub("<","\<").gsub(">","\>")
   end
 
   def failed_test_case_input
