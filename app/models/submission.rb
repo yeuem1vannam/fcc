@@ -12,7 +12,7 @@ class Submission < ActiveRecord::Base
   validates :problem_id, presence: true
   validates :user_id, presence: true
   validates :attached_file, presence: true, on: :create
-  validate :check_opening_contest
+  validate :check_submitable
 
   after_create :save_attached_file
   after_save :runner_enqueue
@@ -104,8 +104,8 @@ class Submission < ActiveRecord::Base
   end
 
   private
-  def check_opening_contest
-    unless problem.try(:contest).try(:opening?)
+  def check_submitable
+    unless problem.try(:contest).try(:submitable?)
       errors.add(:contest, 'Contest ended')
     end
   end

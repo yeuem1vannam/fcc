@@ -3,7 +3,7 @@ class User::SubmissionsController < User::BaseUserController
   before_filter :check_reviewers, only: [:show]
   before_filter :load_problem, only: [:create]
   before_filter :load_submission, only: [:show]
-  before_filter :check_opening_contest, only: [:create]
+  before_filter :check_submitable, only: [:create]
 
   def index
     @submissions = if current_user.is_reviewer?
@@ -34,8 +34,8 @@ class User::SubmissionsController < User::BaseUserController
     params.require(:submission).permit(:problem_id, :language, :attached_file)
   end
 
-  def check_opening_contest
-    redirect_to :index unless @problem.contest.opening?
+  def check_submitable
+    redirect_to user_contest_problem_path(@problem.contest, @problem) unless @problem.contest.submitable?
   end
 
   def check_login

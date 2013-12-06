@@ -16,4 +16,8 @@ class Contest < ActiveRecord::Base
   def started?
     start_at < Time.now
   end
+
+  def submitable?
+    opening? || (started? && Settings.submit_after_ended)
+  end
 end

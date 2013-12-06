@@ -12,6 +12,7 @@ class Problem < ActiveRecord::Base
 
   def add_point submission
     point = [starting_point - submission.wrong_answer_decreased_point - submission.slowly_decreased_point, 0].max
+    point = 0 if contest.ended?
     submission.receive_point point
   end
 

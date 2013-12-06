@@ -29,7 +29,7 @@ class User::ProblemsController < User::BaseUserController
   end
 
   def setup_submission
-    if current_user && @contest.opening?
+    if current_user && @contest.submitable?
       @submission = current_user.submissions.new problem_id: @problem.id
     end
   end
