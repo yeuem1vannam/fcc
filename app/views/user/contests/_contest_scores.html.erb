@@ -9,6 +9,7 @@
         <% contest.problems.desc_rank.each do |problem| %>
           <th><%= problem.name %></th>
         <% end %>
+        <th>Total score</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,13 @@
               <% end %>
             </td>
           <% end %>
+          <td>
+            <center>
+              <div style="width:120px;">
+                <button class="btn btn-block btn-danger"><%= user_score.point %></button>
+              </div>
+            </center>
+          </td>
         </tr>
       <% end %>
     </tbody>
