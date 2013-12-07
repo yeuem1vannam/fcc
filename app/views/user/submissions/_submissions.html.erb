@@ -43,7 +43,7 @@
             <%= Settings.accepted_languages[submission.language] %>
           </td>
           <td>
-            <%= link_to_if (current_user.try(:is_reviewer?) || (@submission.problem.contest.ended? && (current_user == @submission.user))), submission.state, user_submission_path(submission) %>
+            <%= link_to_if (current_user.try(:is_reviewer?) || (submission.problem.contest.ended? && (current_user == submission.user))), submission.state, user_submission_path(submission) %>
           </td>
           <td>
             <%= submission.result_status %>

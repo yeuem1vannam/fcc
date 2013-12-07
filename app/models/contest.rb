@@ -20,4 +20,8 @@ class Contest < ActiveRecord::Base
   def submitable?
     opening? || (started? && Settings.submit_after_ended)
   end
+
+  def result_announced?
+    result_announced_at < Time.now
+  end
 end

@@ -116,6 +116,10 @@ class Submission < ActiveRecord::Base
     File.read(problem.test_cases[last_passed_test_case.to_i][:output]).html_safe unless accepted?
   end
 
+  def result_announced? viewer
+    viewer.try(:is_reviewer?) || (problem.contest.result_announced? && viewer == user)
+  end
+
   private
   def check_submitable
     unless problem.try(:contest).try(:submitable?)
