@@ -4,14 +4,13 @@
       <tr>
         <th>Name</th>
         <th>Rank</th>
-        <!--<th>Content</th>-->
-        <th>Limited time (ms)</th>
-        <th>Limited memory (KB)</th>
-        <th>Limited source size (bytes)</th>
         <th>Starting point</th>
         <th>Wrong answer decreased point</th>
         <th>Slowly decreased interval (seconds)</th>
         <th>Number of test cases</th>
+        <th>Limited time (ms)</th>
+        <th>Limited memory (KB)</th>
+        <th>Limited source size (bytes)</th>
       </tr>
     </thead>
     <tbody>
@@ -28,18 +27,6 @@
           <td>
             <%= problem.difficult %>
           </td>
-          <!--<td>
-            <%# problem.content %>
-          </td>-->
-          <td>
-            <%= problem.limited_time %>
-          </td>
-          <td>
-            <%= problem.limited_memory %>
-          </td>
-          <td>
-            <%= problem.limited_source_size %>
-          </td>
           <td>
             <%= problem.starting_point %>
           </td>
@@ -51,6 +38,15 @@
           </td>
           <td>
             <%= problem.test_cases.count %>
+          </td>
+          <td>
+            <%= problem.limited_time %>
+          </td>
+          <td>
+            <%= problem.limited_memory %>
+          </td>
+          <td>
+            <%= problem.limited_source_size %>
           </td>
         </tr>
       <% end %>
