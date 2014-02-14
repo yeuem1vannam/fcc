@@ -36,7 +36,7 @@
           <% end %>
           <td>
             <%= link_to user_contest_problem_path(submission.problem.contest, submission.problem) do %>
-              <%= submission.problem.name %>
+              <%= submission.problem.name_for current_user %>
             <% end %>
           </td>
           <td>

@@ -19,4 +19,18 @@ class Problem < ActiveRecord::Base
   def test_cases
     Dir["#{TEST_CASES_DIR}/#{id}/test*"].sort.zip(Dir["#{TEST_CASES_DIR}/#{id}/out*"].sort).map{|test| {input: test[0], output: test[1]}}
   end
+
+  def name_for user = nil
+    locale = Settings.multi_language.languages[user ? user.locale : 0]
+    name = send('name_' + locale)
+    name = send('name_' + Settings.multi_language.default_language) unless name
+    name
+  end
+
+  def content_for user = nil
+    locale = Settings.multi_language.languages[user ? user.locale : 0]
+    content = send('content_' + locale)
+    content = send('content_' + Settings.multi_language.default_language) unless content
+    content
+  end
 end

@@ -7,7 +7,7 @@
       <tr>
         <th>User</th>
         <% contest.problems.desc_rank.each do |problem| %>
-          <th><%= problem.name %></th>
+          <th><%= problem.name_for current_user %></th>
         <% end %>
         <th>Total score</th>
       </tr>
@@ -19,20 +19,20 @@
             <%= user_score.user.email %>
           </td>
           <% contest.problems.desc_rank.each do |problem| %>
-            <td style="text-align:center;">
+            <td style="text-align:center;width:10%;">
               <% received_point = user_score.user.submissions.of_problem(problem).accepted.maximum :received_point %>
-              <% if received_point %>
                 <center>
-                  <div style="width:120px;">
+                  <div>
+                  <% if received_point %>
                     <button class="btn btn-block btn-<%= received_point > 0 ? "success" : "inverse" %>"><%= received_point %></button>
+                  <% end %>
                   </div>
                 </center>
-              <% end %>
             </td>
           <% end %>
           <td>
             <center>
-              <div style="width:120px;">
+              <div>
                 <button class="btn btn-block btn-danger"><%= user_score.point %></button>
               </div>
             </center>

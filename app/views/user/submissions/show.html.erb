@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <div class="span12">
     <div>
-      <h5>By <%= @submission.user.email %>, contest: <%= link_to @submission.problem.contest.name, user_contest_path(@submission.problem.contest) %>, problem: <%= link_to @submission.problem.name, user_contest_problem_path(@submission.problem.contest, @submission.problem) %>, <%= @submission.result_status %>, last passed test case: <%= @submission.last_passed_test_case %><h5>
+      <h5>By <%= @submission.user.email %>, contest: <%= link_to @submission.problem.contest.name, user_contest_path(@submission.problem.contest) %>, problem: <%= link_to @submission.problem.name_for(current_user), user_contest_problem_path(@submission.problem.contest, @submission.problem) %>, <%= @submission.result_status %>, last passed test case: <%= @submission.last_passed_test_case %><h5>
     </div>
     <?prettify?>
     <pre class="prettyprint linenums"><%= @submission.source_code %></pre>

@@ -26,3 +26,7 @@ reviewer_emails: ['nguyen.dang.huy@framgia.com', 'nguyen.anh.tien@framgia.com']
 
 submit_after_ended: true
 is_maintenance: false
+
+multi_language:
+  languages: ['vi', 'en']
+  default_language: 'vi'
