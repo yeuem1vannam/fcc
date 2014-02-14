@@ -7,7 +7,7 @@ pagination:
     show:
       submissions: 10
   user_scores:
-    index: 10
+    index: 20
 
 accepted_languages: ['c', 'c++', 'ruby', 'php', 'java', 'python']
 language_extensions: ['.c', '.cpp', '.rb', '.php', '.java', '.py']

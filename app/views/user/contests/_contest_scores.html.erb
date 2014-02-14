@@ -24,7 +24,7 @@
               <% if received_point %>
                 <center>
                   <div style="width:120px;">
-                    <button class="btn btn-block btn-success"><%= received_point %></button>
+                    <button class="btn btn-block btn-<%= received_point > 0 ? "success" : "inverse" %>"><%= received_point %></button>
                   </div>
                 </center>
               <% end %>

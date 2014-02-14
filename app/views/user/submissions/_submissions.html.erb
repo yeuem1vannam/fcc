@@ -49,7 +49,7 @@
             <%= submission.result_status %>
           </td>
           <td>
-            <%= submission.last_passed_test_case %>
+            <%= submission.last_passed_test_case ? submission.last_passed_test_case : 0 %>
           </td>
           <td>
             <%= submission.used_time %> ms

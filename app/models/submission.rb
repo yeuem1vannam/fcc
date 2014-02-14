@@ -52,7 +52,7 @@ class Submission < ActiveRecord::Base
           if used_memory > problem.limited_memory
             result = 'Limited memory exceeded'
             break
-          elsif output == File.read("#{test_case[:output]}").chomp
+          elsif output == File.read("#{test_case[:output]}").chomp.gsub("\r\n","\n")
             update last_passed_test_case: index + 1
           else
             result = 'Wrong Answer'

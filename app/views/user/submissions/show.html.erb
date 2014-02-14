@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<% if @submission.result_announced?(current_user) && @submission.wrong_answer? %>
+<% if @submission.result_announced?(current_user) && !@submission.accepted? %>
   <div>
     <h4 style="color:red;">Failed!!!<h5>
   </div>
