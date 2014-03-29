@@ -6,6 +6,7 @@ class User::SubmissionsController < User::BaseUserController
   before_filter :check_viewable, only: [:show]
 
   def index
+    WebsocketRails[:chats].trigger "new", 10
     @submissions = if current_user.is_reviewer?
                      Submission.page(params[:page]).per(Settings.pagination.contests.index)
                    else
