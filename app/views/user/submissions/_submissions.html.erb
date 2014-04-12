@@ -1,7 +1,7 @@
 <h1>My submissions</h1>
 
 <% unless submissions.blank? %>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="submissions-table">
     <thead>
       <tr>
         <% if current_user.is_reviewer? %>
@@ -29,7 +29,7 @@
           <% 'error' %>
         <% end %>
 
-        <tr class="<%= css_class %>">
+        <tr class="<%= css_class %>" id="<%= submission.id %>">
           <% if current_user.is_reviewer? %>
             <td><%= link_to submission.id, user_submission_path(submission) %></td>
             <td><%= submission.user.email %></td>

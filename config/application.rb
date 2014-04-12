@@ -25,5 +25,6 @@ module Fcc
     config.paths['config/routes.rb'] << Rails.root.join("config/routes/admin.rb")
     config.paths['config/routes.rb'] << Rails.root.join("config/routes/user.rb")
     config.action_view.field_error_proc = proc { |input, instance| input }
+    config.middleware.delete Rack::Lock
   end
 end
