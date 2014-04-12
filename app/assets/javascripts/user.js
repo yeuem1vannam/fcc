@@ -20,17 +20,6 @@ submission_channel.bind('user_disconnected', function(data) {
   console.log(data.name + " has been disconnected");
 });
 
-submission_channel.bind('create', function(data) {
-  console.log("New submission " + data.id);
-  data = custom_json_parse(data);
-  html = '<tr class="' + data.css_class +'" id="' + data.id +'"><td><a href="/user/submissions/' + data.id +'">' + data.id + '</a></td><td>' + data.email + '</td><td><a href="/user/contests/' + data.contest +'/problems/' + data.problem +'">' + data.name +'</a></td><td>' + data.lang +'</td><td><a href="/user/submissions/' + data.id + '">' + data.state +'</a></td><td>'+data.result_status+'</td><td>'+data.last_passed_test_case+'</td><td>'+data.used_time+'ms</td><td>'+data.used_memory+'KB</td><td>'+data.received_point +'</td><td>' + data.created_at + '</td></tr>'
-  if ($("table#submissions-table tbody tr[id='" + data.id + "']").length >= 1){
-    $("table#submissions-table tbody tr[id='" + data.id + "']").replaceWith(html);
-  } else {
-    $("table#submissions-table tbody").prepend(html);
-  };
-});
-
 submission_channel.bind("update", function(data){
   console.log("update score board");
   console.log(data);

@@ -2,7 +2,7 @@
 <%= link_to 'Contest', user_contest_path(contest) %>
 
 <% unless user_scores.blank? %>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="contest-scores">
     <thead>
       <tr>
         <th>User</th>

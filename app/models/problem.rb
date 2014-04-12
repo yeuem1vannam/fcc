@@ -10,6 +10,14 @@ class Problem < ActiveRecord::Base
     Settings.problem_ranks[rank]
   end
 
+  def name
+    name_vi
+  end
+
+  def content
+    content_vi
+  end
+
   def add_point submission
     point = [starting_point - submission.wrong_answer_decreased_point - submission.slowly_decreased_point, 0].max
     point = 0 if contest.ended?
