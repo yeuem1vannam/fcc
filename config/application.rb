@@ -18,7 +18,7 @@ module Fcc
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.encoding = "utf-8"
-    config.autoload_paths += %W(lib lib/paperclip app/models/ckeditor)
+    # config.autoload_paths += %W(lib lib/paperclip app/models/ckeditor)
     config.i18n.load_path += Dir[Rails.root.join("my", 'config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
     config.i18n.locale = :en

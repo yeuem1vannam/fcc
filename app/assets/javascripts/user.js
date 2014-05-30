@@ -2,8 +2,8 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require twitter/bootstrap
-//= require ckeditor/init
 //= require websocket_rails/main
+//= reuire prettify
 //= require_self
 
 function custom_json_parse(data){

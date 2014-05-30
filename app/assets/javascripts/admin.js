@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require twitter/bootstrap
-//= require ckeditor/init
 //= require websocket_rails/main
 //= require_self
 

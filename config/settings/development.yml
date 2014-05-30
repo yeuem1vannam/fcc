@@ -1,0 +1,33 @@
+pagination:
+  contests:
+    index: 10
+    show:
+      problems: 10
+  problems:
+    show:
+      submissions: 10
+  user_scores:
+    index: 20
+
+accepted_languages: ['c', 'c++', 'ruby', 'php', 'java', 'python']
+language_extensions: ['.c', '.cpp', '.rb', '.php', '.java', '.py']
+special_language_files:
+  java: 'Main'
+
+problem_ranks: ['E', 'D', 'C', 'B', 'A']
+
+test_cases_dir: '/home/deploy/fcc/tmp/test_cases'
+submissions_dir: '/home/deploy/fcc/tmp/submissions'
+test_case_displayed_chars: 255
+
+default_time_zone: 7
+time_format: '%Y/%m/%d %H:%M:%S'
+reviewer_emails: ['nguyen.dang.huy@framgia.com', 'nguyen.anh.tien@framgia.com']
+
+submit_after_ended: true
+is_maintenance: false
+
+multi_language:
+  languages: ['vi', 'en']
+  default_language: 'vi'
+sh_file: 'bin/run_code.sh'
