@@ -1,6 +1,6 @@
 Fcc::Application.routes.draw do
   mount Resque::Server, at: '/resque'
-  mount Ckeditor::Engine => '/ckeditor' unless Rails.env.production?
+  # mount Ckeditor::Engine => '/ckeditor' unless Rails.env.production?
   root 'user/contests#index'
 
   ## TODO @linhnt add to admin routes
