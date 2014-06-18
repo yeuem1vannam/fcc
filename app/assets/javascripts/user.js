@@ -3,7 +3,7 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require websocket_rails/main
-//= reuire prettify
+//= require prettify
 //= require_self
 
 function custom_json_parse(data){
