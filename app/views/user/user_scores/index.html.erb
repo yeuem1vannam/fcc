@@ -3,6 +3,7 @@
     <div class="span12">
       <% unless @contest %>
         <p><h2>Total user scores</h2></p>
+        <p><h5>(till last contest)</h5></p>
         <table class="table table-condensed" id="user-scores">
           <thead>
             <tr>
@@ -30,7 +31,6 @@
           </tbody>
         </table>
 
-        <%= paginate @user_scores %>
       <% else %>
 
         <%= render 'user/contests/contest_scores', contest: @contest, user_scores: @user_scores %>

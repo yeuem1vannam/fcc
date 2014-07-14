@@ -3,7 +3,11 @@ class User::UserScoresController < User::BaseUserController
 
   def index
     @total_scores = UserScore.total_scores
-    @user_scores = UserScore.in_contest(@contest).page(params[:page]).per(Settings.pagination.user_scores.index)
+    if @contest.try(:show_point_on_view?)
+      @user_scores = UserScore.in_contest(@contest).page(params[:page]).per(Settings.pagination.user_scores.index)    
+    else
+      @user_scores = UserScore.unscoped.in_contest(@contest).page(params[:page]).per(Settings.pagination.user_scores.index)
+    end
   end
 
   private
