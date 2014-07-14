@@ -5,6 +5,12 @@ class Contest < ActiveRecord::Base
 
   default_scope ->{order 'created_at DESC'}
 
+  class << self
+    def current_contest
+      where('start_at < ? AND end_at > ?', Time.now, Time.now).first
+    end
+  end
+
   def opening?
     end_at >= Time.now && start_at < Time.now
   end
@@ -23,5 +29,9 @@ class Contest < ActiveRecord::Base
 
   def result_announced?
     result_announced_at < Time.now
+  end
+
+  def show_point_on_view?
+    Settings.show_score_during_contest ? true : !opening?
   end
 end

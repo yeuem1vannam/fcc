@@ -19,7 +19,8 @@ class UserScore < ActiveRecord::Base
 
   class << self
     def total_scores
-      select('user_id').group('user_id').sum('point')
+      where.not(contest_id: Contest.current_contest ? Contest.current_contest.id : 0)
+        .select(:user_id).group(:user_id).sum('point')
         .sort_by{|user_id,total_score| total_score}.reverse
     end
     def build_json_table
