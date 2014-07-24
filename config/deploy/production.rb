@@ -1,13 +1,17 @@
 set :rvm_type, :local # Defaults to: :auto
 # set :rvm_ruby_version, '2.1.2@sopkast'      # Defaults to: 'default'
+set :ssh_options, {
+  port: 1112
+}
 set :rvm_custom_path, '/usr/local/rvm'  # only needed if not detected
+set :ip_server, "118.70.170.72"
 set :stage, :production
 set :rails_env, :production
 set :unicorn_worker_count, 3
 set :enable_ssl, false
 set :deployer, "staging"
-role :resque_worker, "192.168.0.6"
-role :resque_scheduler, "192.168.0.6"
+role :resque_worker, fetch(:ip_server)
+role :resque_scheduler, fetch(:ip_server)
 set :workers, { "*" => 10 }
 # Simple Role Syntax
 # ==================
@@ -22,7 +26,7 @@ set :workers, { "*" => 10 }
 set :server_name, "codecontest.framgia.com"
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
-server '192.168.0.6', user: 'staging', roles: %w{web app db}, primary: true
+server fetch(:ip_server), user: 'staging', roles: %w{web app db}, primary: true
 # ==================
 # Supports bulk-adding hosts to roles, the primary server in each group
 # is considered to be the first unless any hosts have the primary

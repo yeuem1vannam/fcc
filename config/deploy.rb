@@ -2,11 +2,11 @@
 lock '3.2.1'
 
 set :application, 'fcc'
-set :repo_url, 'git@github.com:yeuem1vannam/fcc.git'
+set :repo_url, ENV["GIT_REPO"] || 'git@github.com:chikim/fcc.git'
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, "deploy"
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+# set :branch, "deploy"
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/staging/rails_app'
@@ -14,7 +14,7 @@ set :deploy_to, '/home/staging/rails_app'
 set :resque_log_file, "log/resque.log"
 
 # Default value for :scm is :git
-# set :scm, :git
+set :scm, :git
 
 # Default value for :format is :pretty
 # set :format, :pretty
