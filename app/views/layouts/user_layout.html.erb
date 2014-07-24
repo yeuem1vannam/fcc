@@ -1,25 +1,22 @@
 <% content_for :stylesheets do -%>
-  <%= stylesheet_link_tag 'bootstrap.min', media: "all" %>
-  <%= stylesheet_link_tag 'bootstrap-responsive.min', media: "all" %>
-  <%= stylesheet_link_tag 'prettify/prettify.css', media: "all" %>
+  <%= stylesheet_link_tag "user", media: "all" %>
   <style>
     body{
-      background-image: url("/assets/back.jpg");
+      background-image: "<%= asset_path('back.jpg') %>";
     }
   </style>
 <% end -%>
-<div class="container" style="background-color: white;">
-  <%= render 'layouts/user_header' %>
-    <% content_for :content do -%>
+<% content_for :content do -%>
+  <div class="container" style="background-color: white;">
+    <%= render 'layouts/user_header' %>
       <div class = "container" style = "min-height: 600px; width: 90%;">
         <%= yield %>
       </div>
-    <% end -%>
-  <% content_for :javascripts do -%>
-    <%= javascript_include_tag(:user) %>
-    <%= javascript_include_tag("prettify.js") %>
-  <% end -%>
 
-  <%= render partial: "layouts/base_layout" %>
-  <%= render 'layouts/user_footer' %>
-</div>
+    <%= render 'layouts/user_footer' %>
+  </div>
+<% end -%>
+<% content_for :javascripts do -%>
+  <%= javascript_include_tag(:user) %>
+<% end -%>
+<%= render partial: "layouts/base_layout" %>

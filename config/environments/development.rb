@@ -27,4 +27,7 @@ Fcc::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # config.autoload_paths += %W(lib lib/paperclip app/models/ckeditor)
+  config.i18n.load_path += Dir[Rails.root.join("my", 'config', 'locales', '**', '*.{rb,yml}').to_s]
 end

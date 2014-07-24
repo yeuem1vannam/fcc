@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require twitter/bootstrap
-//= require ckeditor/init
 //= require websocket_rails/main
 //= require_self
 
@@ -13,7 +12,7 @@ function custom_json_parse(data){
   return data;
 }
 
-var dispatcher = new WebSocketRails('localhost:3000/websocket');
+var dispatcher = new WebSocketRails(location.origin + '/websocket');
 var submission_channel = dispatcher.subscribe('submissions');
 // var score_channel = dispatcher.subscribe("user_scores");
 submission_channel.bind('user_disconnected', function(data) {

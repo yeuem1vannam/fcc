@@ -6,12 +6,9 @@ gem 'rails', '>= 4.0.0'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 gem "devise"
-gem "thin"
-gem "pry-byebug"
 gem "redis"
 gem "resque", require: "resque/server"
 gem "rails_config"
-gem "better_errors"
 gem "ransack"
 gem "websocket-rails"
 
@@ -35,7 +32,7 @@ gem "jquery-rails"
 gem "jquery-ui-rails"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -56,9 +53,23 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-gem 'ckeditor'
-gem 'paperclip'
 gem 'kaminari'
 gem 'state_machine'
-gem 'binding_of_caller'
+
+group :development do
+  gem "capistrano", "~> 3.2.1"
+  gem "capistrano-rvm"
+  gem "capistrano-rails"
+  gem "capistrano-bundler"
+  gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
+  gem 'binding_of_caller'
+  gem "thin"
+  gem "pry-byebug"
+  gem "better_errors"
+  # gem 'ckeditor'
+  # gem 'paperclip'
+end
+
+group :staging, :production do
+  gem "unicorn"
+end

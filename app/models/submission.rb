@@ -33,6 +33,7 @@ class Submission < ActiveRecord::Base
     end
 
     after_transition :queued => :running do |submission, transition|
+      Rails.logger.info("running")
       submission.compile_and_run
     end
 
@@ -48,10 +49,13 @@ class Submission < ActiveRecord::Base
 
     begin
       problem.test_cases.each_with_index do |test_case,index|
-        res = Timeout::timeout(problem.limited_time/1000.0) {`bin/run_code.sh #{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name} #{Settings.accepted_languages[language]} #{test_case[:input]}`}.chomp
+        extra_time = Settings.accepted_languages[language] == "java" ? 3000 : 0
+        res = Timeout::timeout((problem.limited_time + extra_time)/1000.0) {`#{Settings.sh_file} #{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}/#{file_name} #{Settings.accepted_languages[language]} #{test_case[:input]}`}.chomp
+        Rails.logger.info([res, VALID_REGEX])
         output = res.match(VALID_REGEX).try :[], :output
         used_time = [res.match(VALID_REGEX).try(:[], :used_time).to_i, used_time].max
         used_memory = [res.match(VALID_REGEX).try(:[], :used_memory).to_i, used_memory].max
+        Rails.logger.info([output, used_time, used_memory])
         if output
           if used_memory > problem.limited_memory
             result = 'Limited memory exceeded'
@@ -73,7 +77,8 @@ class Submission < ActiveRecord::Base
           break
         end
       end
-    rescue
+    rescue => e
+      Rails.logger.info(e)
       result = 'Limited time exceeded'
     end
 
