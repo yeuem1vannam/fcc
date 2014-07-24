@@ -18,7 +18,7 @@
         <tr class="<%= (current_user.try :solved?, problem) ? 'success' : '' %>">
           <td>
             <%= link_to user_contest_problem_path(@contest, problem) do %>
-              <%= problem.name %>
+              <%= problem.name_for current_user %>
             <% end %>
             <% if current_user.try :solved?, problem %>
               <p>Solved!</p>

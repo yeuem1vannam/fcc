@@ -35,6 +35,10 @@ class Submission < ActiveRecord::Base
     after_transition :queued => :running do |submission, transition|
       submission.compile_and_run
     end
+
+    after_transition :running => :finished do |submission, transition|
+      WebsocketRails[:submissions].trigger "create", submission.build_json_data
+    end
   end
 
   def compile_and_run
@@ -85,7 +89,7 @@ class Submission < ActiveRecord::Base
 
   def receive_point point
     update received_point: point
-    user.user_scores.in_contest(problem.contest).first_or_initialize.add_point point
+    user.user_scores.in_contest(problem.contest).first_or_initialize.add_point! point
   end
 
   def wrong_answer_decreased_point
@@ -120,6 +124,28 @@ class Submission < ActiveRecord::Base
     viewer.try(:is_reviewer?) || (problem.contest.result_announced? && viewer == user)
   end
 
+  def css_class
+    if queued?
+      "info"
+    elsif accepted?
+      "success"
+    else
+      "error"
+    end
+  end
+
+  def build_json_data
+    self.reload.slice(
+      :id, :state, :result_status, :last_passed_test_case, :used_time,
+      :used_memory, :received_point, :created_at
+    ).merge(
+      email: user.email, lang: Settings.accepted_languages[language],
+      contest: problem.contest.id, problem: problem.id, name: problem.name,
+      created_at: created_at.strftime("%Y/%m/%d %T"), css_class: self.css_class,
+      user_score: user.user_scores.where(contest_id: problem.contest.id).first.try(:point)
+    )
+  end
+
   private
   def check_submitable
     unless problem.try(:contest).try(:submitable?)
@@ -142,6 +168,7 @@ class Submission < ActiveRecord::Base
   end
 
   def runner_enqueue
+    WebsocketRails[:submissions].trigger "create", self.build_json_data
     Resque.enqueue SubmissionRunner, id
   end
 

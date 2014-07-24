@@ -3,7 +3,7 @@
     <div class="span8">
       <div class="text-center">
         <h3>
-          <%= @problem.name %>
+          <%= @problem.name_for current_user %>
         </h3>
         <% if current_user.try :solved?, @problem %>
           <h4><span class="text-success">Solved!</span></h4>
@@ -23,7 +23,7 @@
       </div>
 
       <h3>Content:</h3>
-      <p><%= @problem.content.html_safe %></p>
+      <p><%= @problem.content_for(current_user).html_safe %></p>
     </div>
     <div class="span3">
       <% if current_user %>

@@ -10,5 +10,6 @@ Fcc::Application.routes.draw do
     end
     resources :submissions, only: [:index, :create, :show]
     resources :user_scores, only: [:index]
+    resources :users, only: [:update]
   end
 end

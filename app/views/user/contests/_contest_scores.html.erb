@@ -2,12 +2,12 @@
 <%= link_to 'Contest', user_contest_path(contest) %>
 
 <% unless user_scores.blank? %>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="contest-scores">
     <thead>
       <tr>
         <th>User</th>
         <% contest.problems.desc_rank.each do |problem| %>
-          <th><%= problem.name %></th>
+          <th><%= problem.name_for current_user %></th>
         <% end %>
         <th>Total score</th>
       </tr>
@@ -19,21 +19,21 @@
             <%= user_score.user.email %>
           </td>
           <% contest.problems.desc_rank.each do |problem| %>
-            <td style="text-align:center;">
+            <td style="text-align:center;width:10%;">
               <% received_point = user_score.user.submissions.of_problem(problem).accepted.maximum :received_point %>
-              <% if received_point %>
                 <center>
-                  <div style="width:120px;">
-                    <button class="btn btn-block btn-<%= received_point > 0 ? "success" : "inverse" %>"><%= received_point %></button>
+                  <div>
+                  <% if received_point %>
+                    <button class="btn btn-block btn-<%= received_point > 0 ? "success" : "inverse" %>"><%= contest.show_point_on_view? ? received_point : '???' %></button>
+                  <% end %>
                   </div>
                 </center>
-              <% end %>
             </td>
           <% end %>
           <td>
             <center>
-              <div style="width:120px;">
-                <button class="btn btn-block btn-danger"><%= user_score.point %></button>
+              <div>
+                <button class="btn btn-block btn-danger"><%= contest.show_point_on_view? ? user_score.point : '???' %></button>
               </div>
             </center>
           </td>
@@ -41,6 +41,9 @@
       <% end %>
     </tbody>
   </table>
+  <% if !contest.show_point_on_view? %>
+  <strong>Note: Total scores isn't sorted.</strong>
+  <% end %>
 
   <%= paginate user_scores %>
 <% end %>

@@ -18,6 +18,11 @@ config/environments/*.local.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
 db/schema.rb
-Gemfile.lock
+tmp/cache
+tmp/pids
+tmp/sessions
+tmp/sockets
+tmp/
+tmp_*
+dump.rdb
