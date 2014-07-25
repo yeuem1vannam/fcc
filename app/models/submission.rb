@@ -166,6 +166,7 @@ class Submission < ActiveRecord::Base
       Dir.mkdir("#{SUBMISSIONS_DIR}/#{user_id}") unless Dir.exist?("#{SUBMISSIONS_DIR}/#{user_id}")
       Dir.mkdir("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}") unless Dir.exist?("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}")
       Dir.mkdir("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}") unless Dir.exist?("#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}")
+      File.chmod 0777, "#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}"
       directory = "#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}"
       path = File.join(directory, file_name)
       File.open(path, "wb") { |f| f.write(attached_file.tempfile.read) }
