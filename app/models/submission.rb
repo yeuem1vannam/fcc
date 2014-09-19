@@ -63,9 +63,15 @@ class Submission < ActiveRecord::Base
           elsif output == File.read("#{test_case[:output]}").chomp.gsub("\r\n","\n")
             update last_passed_test_case: index + 1
           else
-            result = 'Wrong Answer'
-            update failed_test_case_result: output
-            break
+            directory = "#{SUBMISSIONS_DIR}/#{user_id}/#{problem_id}/#{id}"
+            output_file_path = File.join(directory, (index + 1).to_s)
+            File.open(output_file_path, "wb") { |f| f.write(output) }
+            if !problem.output_checked_by_script? || `ruby #{TEST_CASES_DIR}/#{problem_id}/script.rb #{test_case[:input]} #{output_file_path}` == '0'
+              result = 'Wrong Answer'
+              update failed_test_case_result: output
+              break
+            end
+            update last_passed_test_case: index + 1
           end
         else
           result = case res
@@ -175,7 +181,7 @@ class Submission < ActiveRecord::Base
 
   def runner_enqueue
     WebsocketRails[:submissions].trigger "create", self.build_json_data
-    Resque.enqueue SubmissionRunner, id
+    Resque.enqueue SubmissionRunner, id if queued?
   end
 
   def file_name

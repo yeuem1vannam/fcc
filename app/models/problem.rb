@@ -41,4 +41,8 @@ class Problem < ActiveRecord::Base
     content = send('content_' + Settings.multi_language.default_language) unless content
     content
   end
+
+  def output_checked_by_script?
+    File.exist?("#{TEST_CASES_DIR}/#{id}/script.rb")
+  end
 end
