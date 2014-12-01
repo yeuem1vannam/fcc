@@ -20,10 +20,12 @@ module Fcc
     config.encoding = "utf-8"
     # config.autoload_paths += %W(lib lib/paperclip app/models/ckeditor)
     config.i18n.load_path += Dir[Rails.root.join("my", 'config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.autoload_paths += %W(lib lib/fcc)
     config.i18n.default_locale = :en
     config.i18n.locale = :en
     config.paths['config/routes.rb'] << Rails.root.join("config/routes/admin.rb")
     config.paths['config/routes.rb'] << Rails.root.join("config/routes/user.rb")
+    config.paths['config/routes.rb'] << Rails.root.join("config/routes/api.rb")
     config.action_view.field_error_proc = proc { |input, instance| input }
     config.middleware.delete Rack::Lock
   end
