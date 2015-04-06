@@ -1,14 +1,14 @@
 set :rvm_type, :local # Defaults to: :auto
 # set :rvm_ruby_version, '2.1.2@sopkast'      # Defaults to: 'default'
-# set :ssh_options, {
-#   port: 1112
-# }
+set :ssh_options, {
+  port: 22
+}
 set :rvm_custom_path, '/usr/local/rvm'  # only needed if not detected
 # set :ip_server, "118.70.170.72"
 set :ip_server, "192.168.0.6"
 set :stage, :production
 set :rails_env, :production
-set :unicorn_worker_count, 3
+set :unicorn_worker_count, 2
 set :enable_ssl, false
 set :deployer, "staging"
 role :resque_worker, fetch(:ip_server)
