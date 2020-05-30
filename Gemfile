@@ -53,7 +53,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'kaminari'
+gem 'kaminari', '>= 1.2.1'
 gem 'state_machine'
 
 group :development do
