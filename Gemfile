@@ -10,7 +10,7 @@ gem "redis"
 gem "resque", require: "resque/server"
 gem "rails_config"
 gem "ransack"
-gem "websocket-rails"
+gem "websocket-rails", ">= 0.7.0"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
