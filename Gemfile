@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 4.0.0'
+gem 'rails', '>= 6.0.3.5'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -10,7 +10,7 @@ gem "redis"
 gem "resque", require: "resque/server"
 gem "rails_config"
 gem "ransack"
-gem "websocket-rails"
+gem "websocket-rails", ">= 0.7.0"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -22,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", ">= 2.2.8"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
